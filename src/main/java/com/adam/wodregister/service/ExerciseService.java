@@ -5,8 +5,6 @@ import com.adam.wodregister.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
-import java.util.Optional;
 
 @Service
 public class ExerciseService {
@@ -23,5 +21,9 @@ public class ExerciseService {
 
 
         return exerciseRepository.save(exercise);
+    }
+
+    public Exercise findByName (String name){
+        return exerciseRepository.findByName(name);
     }
 }
