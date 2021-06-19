@@ -27,4 +27,9 @@ public class WodController {
         return new ResponseEntity<>(wodService.saveOrUpdateWod(wod), HttpStatus.CREATED);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> findAll(){
+        return new ResponseEntity<>(wodService.findAll(),HttpStatus.OK);
+    }
+
 }

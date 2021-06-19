@@ -22,4 +22,8 @@ public class WodService {
     public Wod saveOrUpdateWod(Wod wod){
         return wodRepository.save(wod);
     }
+
+    public Iterable<Wod> findAll(){
+        return wodRepository.findAll();
+    }
 }
