@@ -5,7 +5,7 @@ import com.adam.wodregister.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,6 +37,11 @@ public class ExerciseController {
     @GetMapping("/all")
     public Iterable <Exercise> getAllExercise(){return exerciseService.findAll();}
 
+    @DeleteMapping("/{exerciseName}")
+    public ResponseEntity<?> deleteExercise(@PathVariable String exerciseName){
+        exerciseService.deleteExerciseByName(exerciseName);
+        return new ResponseEntity<String>("Exercise with name: '"+exerciseName+"' was deleted.", HttpStatus.OK);
+    }
 
 
 }

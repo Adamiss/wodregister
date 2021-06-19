@@ -13,4 +13,5 @@ public interface ExerciseRepository extends CrudRepository<Exercise, UUID> {
     Exercise findByName(String name);
 
     Iterable<Exercise> findAll();
+
 }

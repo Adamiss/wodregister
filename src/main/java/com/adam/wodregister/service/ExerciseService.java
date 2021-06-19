@@ -30,4 +30,8 @@ public class ExerciseService {
     public Iterable<Exercise> findAll() {
         return exerciseRepository.findAll();
     }
+
+    public void deleteExerciseByName(String name){
+        exerciseRepository.delete(findByName(name));
+    }
 }
