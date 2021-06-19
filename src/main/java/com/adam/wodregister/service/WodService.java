@@ -26,4 +26,11 @@ public class WodService {
     public Iterable<Wod> findAll(){
         return wodRepository.findAll();
     }
+
+    public void deleteWodById(UUID id){
+
+      wodRepository.findById(id).ifPresent(wod-> {
+          wodRepository.delete(wod);
+      });
+    }
 }

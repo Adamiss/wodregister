@@ -19,7 +19,7 @@ public class WodController {
 
     @GetMapping("/{wodId}")
     public ResponseEntity<?> findById(@PathVariable UUID wodId){
-        return new ResponseEntity<>(wodService.findById(wodId), HttpStatus.OK);
+        return new ResponseEntity<>(wodService.findById(wodId), HttpStatus.FOUND);
     }
 
     @PostMapping("")
@@ -30,6 +30,14 @@ public class WodController {
     @GetMapping("/all")
     public ResponseEntity<?> findAll(){
         return new ResponseEntity<>(wodService.findAll(),HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{wodId}")
+    public ResponseEntity<?> deleteWodById(@Valid @PathVariable UUID wodId){
+        wodService.deleteWodById(wodId);
+        return new ResponseEntity<String>("Wod with ID:'"+wodId.toString()+"' was deleted.",HttpStatus.OK);
+
     }
 
 }
