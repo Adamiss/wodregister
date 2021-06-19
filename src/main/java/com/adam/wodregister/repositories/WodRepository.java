@@ -12,4 +12,6 @@ import java.util.UUID;
 public interface WodRepository extends CrudRepository<Wod,UUID> {
 
     Optional<Wod> findById(UUID id);
+
+
 }

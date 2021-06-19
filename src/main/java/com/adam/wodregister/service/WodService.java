@@ -18,4 +18,8 @@ public class WodService {
     public Optional<Wod> findById(UUID id){
         return wodRepository.findById(id);
     }
+
+    public Wod saveOrUpdateWod(Wod wod){
+        return wodRepository.save(wod);
+    }
 }

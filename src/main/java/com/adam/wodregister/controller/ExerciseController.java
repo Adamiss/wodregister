@@ -21,7 +21,7 @@ public class ExerciseController {
     private ExerciseService exerciseService;
 
     @PostMapping("")
-    public ResponseEntity<?> createNewExercise(@Valid @RequestBody Exercise exercise, Principal principal ){
+    public ResponseEntity<?> createNewExercise(@Valid @RequestBody Exercise exercise ){
 
         System.out.println("exercise.name"+ exercise.getName());
         Exercise exercise1 = exerciseService.saveOrUpdateExercise(exercise );

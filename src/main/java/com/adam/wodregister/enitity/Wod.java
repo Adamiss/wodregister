@@ -29,9 +29,6 @@ public class Wod {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "exercise", orphanRemoval = true)
-    private List<Exercise> exercises = new ArrayList<>();
-
     public UUID getId() {
         return id;
     }
@@ -64,13 +61,6 @@ public class Wod {
         this.updated_At = updated_At;
     }
 
-    public List<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void setExercises(List<Exercise> exercises) {
-        this.exercises = exercises;
-    }
 
     @PrePersist
     protected void onCreate(){
