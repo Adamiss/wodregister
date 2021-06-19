@@ -26,4 +26,8 @@ public class ExerciseService {
     public Exercise findByName (String name){
         return exerciseRepository.findByName(name);
     }
+
+    public Iterable<Exercise> findAll() {
+        return exerciseRepository.findAll();
+    }
 }

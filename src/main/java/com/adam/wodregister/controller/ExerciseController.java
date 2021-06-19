@@ -34,6 +34,9 @@ public class ExerciseController {
         return new ResponseEntity<>(exercise, HttpStatus.OK);
     }
 
+    @GetMapping("/all")
+    public Iterable <Exercise> getAllExercise(){return exerciseService.findAll();}
+
 
 
 }
