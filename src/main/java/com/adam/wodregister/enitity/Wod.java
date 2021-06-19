@@ -1,17 +1,19 @@
 package com.adam.wodregister.enitity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "exercise")
-
-public class Exercise {
+@Table(name="wod")
+public class Wod {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +21,7 @@ public class Exercise {
 
     @NotNull(message = "Must have a name")
     @Column(name = "name")
-    @NotBlank(message = "Exercise name is required")
+    @NotBlank(message = "Wod name is required")
     private String name;
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
@@ -27,17 +29,8 @@ public class Exercise {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
 
-    public Exercise() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "id=" + getId() +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "exercise", orphanRemoval = true)
+    private List<Exercise> exercises = new ArrayList<>();
 
     public UUID getId() {
         return id;
@@ -71,6 +64,14 @@ public class Exercise {
         this.updated_At = updated_At;
     }
 
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
     @PrePersist
     protected void onCreate(){
         this.created_At = new Date();
@@ -80,4 +81,5 @@ public class Exercise {
     protected void onUpdate(){
         this.updated_At = new Date();
     }
+
 }
